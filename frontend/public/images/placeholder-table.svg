@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1000" viewBox="0 0 800 1000">
+  <rect width="800" height="1000" fill="#E4D5BE"/>
+  <rect x="80" y="80" width="640" height="840" fill="none" stroke="#5A4632" stroke-width="2" stroke-dasharray="6 10"/>
+  <text x="400" y="500" font-family="Georgia, serif" font-size="28" fill="#5A4632" text-anchor="middle">Table</text>
+</svg>

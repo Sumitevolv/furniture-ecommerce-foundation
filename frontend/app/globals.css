@@ -1,0 +1,201 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/* ---------------------------------------------------------------------
+ * Design tokens — "Atelier" furniture palette
+ * Warm, tactile, gallery-like. Ivory/sand surfaces, walnut & charcoal
+ * text, a single muted bronze accent used sparingly.
+ * ------------------------------------------------------------------- */
+:root {
+  /* Elegant serif for headings, modern sans for body — see README for
+     swapping in self-hosted Fraunces/Inter font files via next/font/local
+     once real brand font assets are added to /public/fonts. */
+  --font-serif: "Fraunces", "Iowan Old Style", "Palatino Linotype", Georgia, "Times New Roman", serif;
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Core palette */
+  --color-ivory: #FBF8F3;
+  --color-cream: #F3ECE0;
+  --color-sand: #E4D5BE;
+  --color-walnut: #5A4632;
+  --color-walnut-dark: #3C2F21;
+  --color-charcoal: #2B2620;
+  --color-black: #17140F;
+  --color-bronze: #A97C50;
+  --color-bronze-light: #C9A36A;
+  --color-gold: #B8925A;
+
+  /* Semantic surface / text tokens (light, default theme) */
+  --background: var(--color-ivory);
+  --foreground: var(--color-charcoal);
+  --surface: #ffffff;
+  --surface-muted: var(--color-cream);
+  --surface-sunken: var(--color-sand);
+  --border-subtle: #E7DDCC;
+  --border-strong: var(--color-walnut);
+
+  --text-primary: var(--color-charcoal);
+  --text-secondary: #6B5D4C;
+  --text-muted: #9C8D77;
+  --text-inverse: var(--color-ivory);
+
+  --accent: var(--color-bronze);
+  --accent-foreground: #ffffff;
+  --accent-hover: #8F6A44;
+
+  --success: #4B7A5B;
+  --warning: #B98A2E;
+  --danger: #A6423A;
+  --info: #4C6E8A;
+
+  --ring: var(--color-bronze);
+  --radius: 0.5rem;
+}
+
+/* Optional dark mode — used sparingly (e.g. admin dashboard), the
+   storefront itself stays in the premium light palette. */
+.dark {
+  --background: var(--color-black);
+  --foreground: var(--color-ivory);
+  --surface: var(--color-charcoal);
+  --surface-muted: #221E18;
+  --surface-sunken: #17140F;
+  --border-subtle: #3A342A;
+  --border-strong: var(--color-bronze-light);
+
+  --text-primary: var(--color-ivory);
+  --text-secondary: #C9BEAC;
+  --text-muted: #8A7D68;
+  --text-inverse: var(--color-charcoal);
+
+  --accent: var(--color-bronze-light);
+  --accent-foreground: var(--color-black);
+  --accent-hover: var(--color-gold);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-surface-sunken: var(--surface-sunken);
+  --color-border-subtle: var(--border-subtle);
+  --color-border-strong: var(--border-strong);
+
+  --color-ivory: var(--color-ivory);
+  --color-cream: var(--color-cream);
+  --color-sand: var(--color-sand);
+  --color-walnut: var(--color-walnut);
+  --color-walnut-dark: var(--color-walnut-dark);
+  --color-charcoal: var(--color-charcoal);
+  --color-black: var(--color-black);
+  --color-bronze: var(--color-bronze);
+  --color-bronze-light: var(--color-bronze-light);
+  --color-gold: var(--color-gold);
+
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-text-inverse: var(--text-inverse);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent-hover: var(--accent-hover);
+
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+  --color-info: var(--info);
+  --color-ring: var(--ring);
+
+  --font-sans: var(--font-sans);
+  --font-serif: var(--font-serif);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  /* Breakpoints — explicit so the site is verified down to small phones */
+  --breakpoint-xs: 360px;
+  --breakpoint-sm: 390px;
+  --breakpoint-sm-lg: 430px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1440px;
+  --breakpoint-3xl: 1920px;
+
+  --container-8xl: 1440px;
+}
+
+@layer base {
+  * {
+    border-color: var(--border-subtle);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: var(--background);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+  }
+
+  /* Accessible, visible focus ring everywhere */
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  ::selection {
+    background: var(--color-bronze-light);
+    color: var(--color-black);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer utilities {
+  .container-page {
+    width: 100%;
+    max-width: var(--container-8xl);
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+  @media (min-width: 768px) {
+    .container-page { padding-inline: 2rem; }
+  }
+  @media (min-width: 1280px) {
+    .container-page { padding-inline: 3rem; }
+  }
+
+  .text-balance { text-wrap: balance; }
+
+  .sr-only-focusable:not(:focus) {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+}
